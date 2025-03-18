@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kroatisch</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        input, button { font-size: 18px; padding: 10px; margin: 10px; }
+    </style>
+    <script>
+        function sendToWebhook() {
+            const word = document.getElementById("wordInput").value;
+            if (!word) {
+                alert("Gib ein Wort ein.");
+                return;
+            }
+            const webhookUrl = "https://hook.eu2.make.com/53gejz8cxh1laqe6ov26v62ds1khnu43";
+            const payload = JSON.stringify({ word: word });
+
+            fetch(webhookUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: payload
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log("Response:", data);
+                alert("Sent successfully!");
+            })
+            .catch(error => alert("Error sending request" + error));
+        }
+    </script>
+</head>
+<body>
+    <h2>Kroatisch</h2>
+    <input type="text" id="wordInput" placeholder="Gib ein Wort ein …">
+    <button onclick="sendToWebhook()">Senden</button>
+</body>
+</html>
