@@ -1,0 +1,6 @@
+- name: Home
+  link: /
+- name: Testautomatisierung
+  link: /Testautomatisierung/
+- name: Tosca
+  link: /Testautomatisierung/Tosca/
