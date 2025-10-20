@@ -2,8 +2,12 @@
   color: green;
 }
 
+.right-aligned {
+  text-align: right;
+}
+
 body {
-  font-family: "Times";
+  font-family: "Helvetica";
   padding: 25px;
   background-color: #f2f2f2;
 }
@@ -22,4 +26,8 @@ h2 {
 
 a {
   text-decoration: none;
+}
+
+footer {
+  padding-top: 50px;
 }

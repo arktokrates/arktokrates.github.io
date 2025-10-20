@@ -6,7 +6,14 @@
     <link rel="stylesheet" href="/assets/css/styles.css">
   </head>
   <body>
+    <header>
     {% include navigation.html %}
+    </header>
     {{ content }}
+    <footer role="contentinfo">
+      <p class="right-aligned">
+        <small>{{ 'now' | date: "%d.%m.%Y" }}</small> <!-- page.date -->
+      </p>
+    </footer>
   </body>
 </html>
