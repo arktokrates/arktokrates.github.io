@@ -1,13 +1,15 @@
 ---
 layout: default
 permalink: /Testautomatisierung/NeoLoad/
-last_modified_at: 
+last_modified_at: 2025-10-21
 ---
 
 # NeoLoad
 
 
 [Cloud Console](#Cloud-Console)
+
+[Cloud-Lastgenerator](#Cloud-Lastgenerator)
 
 [RealBrowser](#RealBrowser)
 
@@ -47,6 +49,18 @@ Zugang: [Customer Area](https://www.neotys.com/accountarea/customer-area.html) >
 ### Übersicht über Verbrauch
 
 - Eine Übersicht über die verbrauchten VUH oder Cloud credits unter **Workgroups > My Workgroups**
+
+
+
+## Cloud-Lastgenerator {#Cloud-Lastgenerator}
+
+Der NeoLoad-Controller prüft, ob die Version etc. stimmt => Farbe des Lastgenerators als rot oder grün dargestellt.
+
+Erst beim Start des Tests werden die Testobjekte zum Cloud-Lastgenerator hochgeladen.
+
+Wenn man die IP des Cloud-Lastgenerators sieht, ist dieser hochgefahren und zur Testdurchführung bereit.
+
+
 
 
 
