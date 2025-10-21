@@ -1,6 +1,7 @@
 ---
 layout: default
 permalink: /Testautomatisierung/Tosca/
+last_modified_at: 
 ---
 
 # Tosca
@@ -11,6 +12,8 @@ permalink: /Testautomatisierung/Tosca/
 [Zeilenumbruch](#Zeilenumbruch)
 
 &nbsp;
+
+---
 
 &nbsp;
 
@@ -31,8 +34,6 @@ Query: `=>OBJECTS("<UniqueId>","<UniqueId>" etc.)`
 
 ==> rascher Zugriff auf diese Objekte (als Alternative zu Tabs in gespeicherter Ansicht)
 
-
-&nbsp;
 
 
 ## Zeilenumbruch in TestStepValue {#Zeilenumbruch}

@@ -2,5 +2,7 @@
   link: /
 - name: Testautomatisierung
   link: /Testautomatisierung/
+- name: NeoLoad
+  link: /Testautomatisierung/NeoLoad/
 - name: Tosca
   link: /Testautomatisierung/Tosca/

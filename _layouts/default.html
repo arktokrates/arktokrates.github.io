@@ -12,7 +12,10 @@
     {{ content }}
     <footer role="contentinfo">
       <p class="right-aligned">
-        <small>{{ 'now' | date: "%d.%m.%Y" }}</small> <!-- page.date -->
+        <!-- <small>{{ 'now' | date: "%d.%m.%Y" }}</small> page.date -->
+        {% if page.last_modified_at %}
+        <small>Letzte Aktualisierung: {{ page.last_modified_at | date: "%d.%m.%Y" }}</small>
+        {% endif %}
       </p>
     </footer>
   </body>
