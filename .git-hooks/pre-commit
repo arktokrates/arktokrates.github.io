@@ -2,40 +2,78 @@
 
 echo "🔄 Updating 'last_modified_at' for staged Markdown/HTML..."
 
-# Nur staged Dateien, die hinzugefügt/geändert sind
+# Staged Dateien (Add/Copy/Modify/Rename/Type change)
 staged_files=($(git diff --cached --name-only --diff-filter=ACMRT | grep -E '\.(md|markdown|html)$' || true))
 if [[ ${#staged_files[@]} -eq 0 ]]; then
   echo "ℹ️  No staged Markdown/HTML files."
   exit 0
 fi
 
-# Commit-Datum: bevorzugt GIT_AUTHOR_DATE, sonst heutiges Datum (YYYY-MM-DD)
-commit_date="${GIT_AUTHOR_DATE:-$(date +%F)}"
-# Falls GIT_AUTHOR_DATE im Format "YYYY-MM-DD HH:MM:SS ±TZ" kommt → nur Datum extrahieren
-commit_date="${commit_date%% *}"
+# --- Datumsermittlung & Normalisierung ---------------------------------------
+
+# 1) Kandidaten: bevorzugt GIT_AUTHOR_DATE, dann GIT_COMMITTER_DATE, ansonsten "heute"
+raw_date="${GIT_AUTHOR_DATE:-${GIT_COMMITTER_DATE:-}}"
+
+# Funktion: beliebiges raw_date -> YYYY-MM-DD
+normalize_to_ymd() {
+  local in="$1"
+
+  # Nichts gesetzt → heutiges Datum
+  if [[ -z "$in" ]]; then
+    date +%F
+    return
+  fi
+
+  # Falls Format "YYYY-MM-DD ..." → nur Datumsteil nehmen
+  if [[ "$in" =~ ^([0-9]{4}-[0-9]{2}-[0-9]{2}) ]]; then
+    echo "${match[1]}"
+    return
+  fi
+
+  # Falls "@epoch ..." oder "epoch ..." → epoch extrahieren
+  # Beispiele: "@1761214705 +0200", "1761214705 +0200", "@1761214705"
+  if [[ "$in" =~ ^@?([0-9]{10}) ]]; then
+    local epoch="${match[1]}"
+    # macOS/BSD 'date -r' formatiert aus Epoch-Sekunden
+    date -r "$epoch" +%F 2>/dev/null && return
+    # Fallback (z.B. auf Systemen ohne -r): nutze Python, falls vorhanden
+    python3 - <<PY 2>/dev/null && return
+import datetime
+print(datetime.datetime.fromtimestamp($epoch).strftime("%Y-%m-%d"))
+PY
+    # letzter Fallback: "heute"
+    date +%F
+    return
+  fi
+
+  # Sonstige Strings (z.B. "Tue Oct 21 10:00:00 2025 +0200"):
+  # 'date -j -f' ist auf macOS knifflig ohne Format – nimm einfach "heute".
+  date +%F
+}
+
+commit_date="$(normalize_to_ymd "$raw_date")"
+
+# --- Dateien patchen ----------------------------------------------------------
 
 for file in "${staged_files[@]}"; do
   [[ -f "$file" ]] || continue
 
-  # Front Matter vorhanden? (erste Zeile '---')
+  # Front Matter muss mit '---' beginnen
   if ! head -n 1 "$file" | grep -q "^---"; then
-    # Ohne Front Matter: nichts tun (oder hier optional eines erzeugen)
     continue
   fi
 
-  # Fall A: Feld existiert bereits → ersetzen (auch wenn leer)
   if grep -q "^last_modified_at:" "$file"; then
-    # Ersetze komplette Zeile; BSD sed braucht leeres Backup-Suffix
+    # Ersetze komplette Zeile (auch wenn leer nach dem Doppelpunkt)
     sed -i '' -E "s/^last_modified_at:[[:space:]].*$/last_modified_at: ${commit_date}/" "$file"
   else
-    # Fall B: Feld fehlt → direkt nach der ersten '---' Zeile einfügen
+    # Direkt NACH der ersten '---' Zeile einfügen
     awk -v date="$commit_date" '
       NR==1 { print; print "last_modified_at: " date; next }
       { print }
     ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
   fi
 
-  # Datei erneut stagen (Inhalt geändert)
   git add "$file"
   echo "✅ ${file} → last_modified_at: ${commit_date}"
 done
