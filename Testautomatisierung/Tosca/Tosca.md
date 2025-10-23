@@ -2,7 +2,7 @@
 author: Bernhard Fuchs
 layout: default
 permalink: /Testautomatisierung/Tosca/
-last_modified_at: 2025-10-21
+last_modified_at: @1761214705
 ---
 
 # Tosca
@@ -95,7 +95,7 @@ Mit Vorteil werden Testfälle mit einer einheitlichen Struktur umgesetzt, auch w
 | Vorbedingungen/Prerequisites/Precondition/Preprocessing | Alles, was vor dem eigentlichen Testprozess auszuführen ist                                                               |
 | Prozess/Process/Test content                            | Tatsächlicher Testprozess, der einer Anforderung (Requirement) entsprechen kann                                           |
 | Verifizierung/Verification                              | Zu prüfende Elemente                                                                                                      |
-| Nachbedingungen/Postcondition/Postprocessing            | Alles, was nach dem Testprozess auszuführen ist, z.B. Löschen generierter Elemente<br>oder Zurücksetzen der Konfiguration |
+| Nachbedingungen/Postcondition/Postprocessing            | Alles, was nach dem Testprozess auszuführen ist, z.B. Löschen generierter Elemente oder Zurücksetzen der Konfiguration |
 
 Die Schritte zur Verifizierung können auch Teil des eigentlichen Testprozesses sein.
 

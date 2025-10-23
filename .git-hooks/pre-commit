@@ -1,42 +1,43 @@
 #!/bin/zsh
 
-echo "🔄 Updating 'last_modified_at' for staged content..."
+echo "🔄 Updating 'last_modified_at' for staged Markdown/HTML..."
 
-# Nur Dateien, die gerade committet werden (staged), und nur bestimmte Endungen
+# Nur staged Dateien, die hinzugefügt/geändert sind
 staged_files=($(git diff --cached --name-only --diff-filter=ACMRT | grep -E '\.(md|markdown|html)$' || true))
-
 if [[ ${#staged_files[@]} -eq 0 ]]; then
   echo "ℹ️  No staged Markdown/HTML files."
   exit 0
 fi
 
-# Heutiges Datum als Fallback (für neue Dateien ohne Git-Historie)
-today=$(date +%F)
+# Commit-Datum: bevorzugt GIT_AUTHOR_DATE, sonst heutiges Datum (YYYY-MM-DD)
+commit_date="${GIT_AUTHOR_DATE:-$(date +%F)}"
+# Falls GIT_AUTHOR_DATE im Format "YYYY-MM-DD HH:MM:SS ±TZ" kommt → nur Datum extrahieren
+commit_date="${commit_date%% *}"
 
 for file in "${staged_files[@]}"; do
-  # Datei muss existieren (kann z. B. gelöscht sein)
   [[ -f "$file" ]] || continue
 
-  # Front Matter prüfen: beginnt Datei mit '---'?
-  head -n 1 "$file" | grep -q "^---" || continue
-
-  # Letztes Änderungsdatum aus Git, Fallback auf heute
-  last_modified=$(git log -1 --format="%cs" -- "$file" 2>/dev/null)
-  [[ -z "$last_modified" ]] && last_modified="$today"
-
-  # Fall A: last_modified_at existiert bereits (auch wenn leer) → Zeile ersetzen
-  if grep -q "^last_modified_at:" "$file"; then
-    # BSD sed (macOS): Backup-Endung erforderlich
-    sed -i '' -E "s/^last_modified_at:.*$/last_modified_at: ${last_modified}/" "$file"
-  else
-    # Fall B: Feld fehlt → gleich NACH der ersten '---' Zeile einfügen
-    awk -v date="$last_modified" 'NR==1{print; getline; print "last_modified_at: " date; print; next}1' "$file" > "$file.tmp" \
-      && mv "$file.tmp" "$file"
+  # Front Matter vorhanden? (erste Zeile '---')
+  if ! head -n 1 "$file" | grep -q "^---"; then
+    # Ohne Front Matter: nichts tun (oder hier optional eines erzeugen)
+    continue
   fi
 
-  # Datei erneut für Commit vormerken (falls Inhalt geändert)
+  # Fall A: Feld existiert bereits → ersetzen (auch wenn leer)
+  if grep -q "^last_modified_at:" "$file"; then
+    # Ersetze komplette Zeile; BSD sed braucht leeres Backup-Suffix
+    sed -i '' -E "s/^last_modified_at:[[:space:]].*$/last_modified_at: ${commit_date}/" "$file"
+  else
+    # Fall B: Feld fehlt → direkt nach der ersten '---' Zeile einfügen
+    awk -v date="$commit_date" '
+      NR==1 { print; print "last_modified_at: " date; next }
+      { print }
+    ' "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+  fi
+
+  # Datei erneut stagen (Inhalt geändert)
   git add "$file"
-  echo "✅ ${file} → last_modified_at: ${last_modified}"
+  echo "✅ ${file} → last_modified_at: ${commit_date}"
 done
 
 echo "✨ Done."
