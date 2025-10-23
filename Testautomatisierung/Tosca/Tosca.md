@@ -9,7 +9,21 @@ last_modified_at: 2025-10-23
 
 [Automation Agents](#Automation-Agents)
 
+[Browser](#Browser)
+
 [Buffer](#Buffer)
+
+[Business Testcase](#Business-Testcase)
+
+[Condition](#Condition)
+
+[Configurations](#Configurations)
+
+[Connection String](#Connection-String)
+
+[Feiertage](#Feiertage)
+
+[Fenster](#Fenster)
 
 [If-Ausdrücke](#If-Ausdrücke)
 
@@ -43,6 +57,33 @@ Mehrere Tosca-Prozesse «Tricentis.Automation.Agent.exe» lassen sich auf einmal
 
 
 
+## Browser {#Browser}
+
+### TestConfigurationParameters
+
+Zur Testausführung über Sauce Labs oder Browsterstack können TestConfigurationParameter verwendet werden:
+
+![Tosca: TestConfigurationParameter für Browser mit Browserstack](/assets/images/Tosca_Browser_TCP_BrowserStack_Proxy_1.png)
+
+![Tosca: TestConfigurationParameter für Browser mit Browserstack](/assets/images/Tosca_Browser_TCP_BrowserStack_Proxy_2.png)
+
+![Tosca: TestConfigurationParameter für Browser mit Sauce Labs](/assets/images/Tosca_Browser_TCP_Saucelabs_Proxy.png)
+
+Vgl. die Dokumentation unter [Remote-Browser steuern](https://docs.tricentis.com/tosca-2025.1/de-de/content/engines_3.0/xbrowser/xbrowser_steer_remote_browser.htm)
+
+
+### Zurückgehen im Browser mit Javascript
+
+Vgl. https://support.tricentis.com/community/article.do?number=KB0014887
+
+Module «Execute JavaScript» aus Subset Standard.tsu:
+- Titel des Tabs (z.B. \*coop.ch)
+- JavaScript: `window.history.go(-1)` // auch mehrere Schritte möglich
+
+**Alternative:** Verwendung des Moduls «TBox Sendkeys»
+
+
+
 ## Buffer {#Buffer}
 
 ### Initialisierung
@@ -65,6 +106,52 @@ Zur gezielten Identifikation empfiehlt sich die Verwendung von Präfixen für Bu
 `{LEFT[start][end][buffername]}`
 
 `{CALC[LEFT("{B[sample]}"; 3)]}`
+
+
+
+## Business Testcase {#Business-Testcase}
+
+Zur Abbildung eines End-to-End-Prozesses (die Business-Testfälle selbst im blauen Bereich lassen sich nicht ausführen – im grünen Bereich: orange Business-ExecutionList)
+
+**Ziel:** einfachere Wartung und besserer Überblick (situationsspezifisch anwenden), unter Verwendung von TDS
+
+* Requirements: Highlevel-Prozesssicht
+* Blauer Bereich: Testfälle (einzeln hineingezogen)
+* Grüner Bereich: Ausführungsliste (TestExecutionEntry einzeln hineingezogen)
+
+* **Reporting** z.B. bezogen auf Business Testcase
+
+
+
+## Condition {#Condition}
+
+Grundsatz: Besser Conditions verwenden als if-Strukturen
+
+Auf z.B. RTSBs lassen sich keine Buffer in Bedingungen verwenden, da diese zum Zeitpunkt der Instanziierung nicht existieren.
+
+
+
+## Configurations {#Configurations}
+
+Die im blauen Bereich gesetzten Konfigurationen gelten auch im grünen Bereich, d.h. im grünen Bereich können sie nicht überschrieben werden.
+
+
+
+## Connection String {#Connection-String}
+
+Server=toscaprod-db;Database=ToscaProd;Integrated Security=SSPI
+
+
+
+## Feiertage {#Feiertage}
+
+Um die Arbeitstage zu berechnen, braucht Tosca Informationen über die Feiertage im jeweiligen Land. Diese lassen sich in den Einstellungen unter **Settings > TBox > Special Dates** definieren (vgl. [«Einstellungen - Special Dates»](https://docs.tricentis.com/tosca-2025.1/de-de/content/tosca_commander/settings_tbox_special_dates.htm?Highlight=special%20dates)).
+
+
+
+## Fenster {#Fenster}
+
+Wenn zwei Fenster mit demselben Namen existieren (z.B. in Avaloq): Constraint auf Feld in intendiertem Fenster (z.B. mit `active` oder `exists`) anwenden. So lässt sich das richtige Fenster ansteuern (das Hervorbringen in den Vordergrund ist sonst nicht möglich).
 
 
 
