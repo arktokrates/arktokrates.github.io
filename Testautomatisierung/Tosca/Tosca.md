@@ -2,7 +2,7 @@
 author: Bernhard Fuchs
 layout: default
 permalink: /Testautomatisierung/Tosca/
-last_modified_at: @1761214705
+last_modified_at: 2025-10-23
 ---
 
 # Tosca
@@ -134,5 +134,7 @@ Zeilenumbruch im Feld TestStepValue: ~
 ## Ziel eines Testfalls {#Ziel-eines-Testfalls}
 
 Jeder Testfall sollte ein einziges klares Ziel oder einen Verwendungszweck haben. Er sollte so nah wie möglich einem tatsächlichen Business-Szenario entsprechen. Nur erforderliche Elemente sollten verifiziert werden.
+
+
 
 
