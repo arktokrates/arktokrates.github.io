@@ -2,7 +2,16 @@
   link: /
 - name: Testautomatisierung
   link: /Testautomatisierung/
-- name: NeoLoad
-  link: /Testautomatisierung/NeoLoad/
-- name: Tosca
-  link: /Testautomatisierung/Tosca/
+  children:
+    - name: NeoLoad
+      link: /Testautomatisierung/NeoLoad/
+    - name: Tosca
+      link: /Testautomatisierung/Tosca/
+- name: KI
+  link: /KI/
+  children:
+    - name: Data Science
+      link: /KI/Data-Science/
+      children:
+        - name: Essentials for data science
+          link: /KI/Data-Science/Essentials_DS/

@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /Testautomatisierung/NeoLoad/
-last_modified_at: 2025-10-21
+last_modified_at: 2025-11-06
 ---
 
 # NeoLoad
@@ -56,11 +56,11 @@ Zugang: [Customer Area](https://www.neotys.com/accountarea/customer-area.html) >
 
 Der NeoLoad-Controller prüft, ob die Version etc. stimmt => Farbe des Lastgenerators als rot oder grün dargestellt.
 
-Erst beim Start des Tests werden die Testobjekte zum Cloud-Lastgenerator hochgeladen.
+Erst beim Start des Tests werden die **Testobjekte** zum Cloud-Lastgenerator hochgeladen.
 
 Wenn man die IP des Cloud-Lastgenerators sieht, ist dieser hochgefahren und zur Testdurchführung bereit.
 
-
+Der Cloud-Lastgenerator identifiziert den zugehörigen NeoLoad-Controller über einen **Fingerprint**, der vor dem Start des Lasttests in seine Konfiguration geschrieben wird.
 
 
 

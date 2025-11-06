@@ -1,0 +1,40 @@
+{%- assign url = page.url | replace:'index.html','' -%}
+{%- if url != '/' -%}
+  {%- assign trail = "" | split:"|" -%}
+  {%- assign level = site.data.navigation -%}
+
+  {%- for _i in (1..10) -%}{% comment %}max. 10 Ebenen{% endcomment %}
+    {%- assign best = nil -%}
+    {%- assign best_len = 0 -%}
+    {%- for n in level -%}
+      {%- assign nlen = n.link | size -%}
+      {%- assign start = url | slice: 0, nlen -%}
+      {%- if start == n.link and nlen > best_len -%}
+        {%- assign best = n -%}
+        {%- assign best_len = nlen -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- if best -%}
+      {%- assign trail = trail | push: best -%}
+      {%- if best.children -%}
+        {%- assign level = best.children -%}
+      {%- else -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- else -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  <nav aria-label="Breadcrumb" class="breadcrumbs">
+    <a href="/">Home</a>
+    {%- for n in trail -%}
+      &nbsp;/&nbsp;
+      {%- if forloop.last -%}
+        <span aria-current="page">{{ n.name }}</span>
+      {%- else -%}
+        <a href="{{ n.link }}">{{ n.name }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+{%- endif -%}

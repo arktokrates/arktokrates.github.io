@@ -6,10 +6,15 @@
   text-align: right;
 }
 
+.breadcrumbs { font-size: .95rem; margin: .5rem 0 1rem; }
+.breadcrumbs a { text-decoration: none; }
+.breadcrumbs [aria-current="page"] { font-weight: 600; }
+
 body {
   font-family: "Helvetica";
-  padding: 25px;
+  padding: 30px;
   background-color: #f2f2f2;
+  width: 80%;
 }
 
 h1 {
@@ -26,7 +31,23 @@ h3 {
   padding-top: 25px;
 }
 
+h4 {
+  padding-top: 20px;
+}
+
+h5 {
+  padding-top: 15px;
+}
+
+h6 {
+  padding-top: 10px;
+}
+
 h2 + h3 {
+  padding-top: 5px;
+}
+
+h3 + h4 {
   padding-top: 5px;
 }
 
@@ -46,3 +67,5 @@ table, th, td {
 th, td {
   padding: 5px;
 }
+
+@import "rouge";

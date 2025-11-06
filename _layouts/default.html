@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <title>{{ page.title }}</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    {% include head/custom.html %}
   </head>
   <body>
     <header>
-    {% include navigation.html %}
+    {% include breadcrumbs.html %}
     </header>
     {{ content }}
     <footer role="contentinfo">
