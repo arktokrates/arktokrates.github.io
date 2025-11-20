@@ -10,8 +10,7 @@
 - name: KI
   link: /KI/
   children:
-    - name: Data Science
+    - name: Data science
       link: /KI/Data-Science/
-      children:
-        - name: Essentials for data science
-          link: /KI/Data-Science/Essentials_DS/
+    - name: Machine learning
+      link: /KI/Machine-Learning/

@@ -1,8 +1,8 @@
 ---
 author: "Bernhard Fuchs"
 layout: default
-permalink: /KI/Data-Science/Essentials_DS/
-last_modified_at: 2025-11-06
+permalink: /KI/Data-Science/
+last_modified_at: 2025-11-20
 ---
 
 

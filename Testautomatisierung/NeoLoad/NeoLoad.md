@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /Testautomatisierung/NeoLoad/
-last_modified_at: 2025-11-06
+last_modified_at: 2025-11-20
 ---
 
 # NeoLoad
@@ -12,6 +12,8 @@ last_modified_at: 2025-11-06
 [Cloud-Lastgenerator](#Cloud-Lastgenerator)
 
 [RealBrowser](#RealBrowser)
+
+[URLs zur Freischaltung](#URLs-zur-Freischaltung)]
 
 &nbsp;
 
@@ -72,4 +74,23 @@ RealBrowser ist eine Technologie zur Aufzeichnung von Skripts in NeoLoad.
 ### Ausführung über Cloud-Lastgenerator
 
 Die Ausführung eines Testskripts, das mit RealBrowser umgesetzt worden ist, über einen Cloud-Lastgenerator setzt eine Lizenz mit Cloud Credits voraus (eine VUH-Lizenz passt nicht).
+
+
+
+## URLs zur Freischaltung {#URLs-zur-Freischaltung}
+
+Diese vier URLs sind gegebenenfalls in der Firewall freizuschalten, um Testskript über einen Cloud-Lastgenerator auszuführen:
+
+cloud.saas.neotys.com
+neoload-rest.saas.neotys.com
+neoload-rest-eu.saas.neotys.com
+neoload-api-eu.saas.neotys.com
+
+Sowie zusätzliche die reservierte IP-Adresse des Cloud-Lastgenerators.
+
+In der Firewall darf nur Certificate-Inspection erfolgen (keine Deep Inspection).
+
+
+
+
 
