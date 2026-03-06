@@ -7,6 +7,11 @@
       link: /Testautomatisierung/NeoLoad/
     - name: Tosca
       link: /Testautomatisierung/Tosca/
+    - name: Rest Assured
+      link: /Testautomatisierung/RestAssured/
+    - name: Rest Assured mit Kafka
+      link: /Testautomatisierung/RestAssured_Kafka/
+
 - name: KI
   link: /KI/
   children:

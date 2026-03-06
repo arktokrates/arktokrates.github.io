@@ -2,7 +2,7 @@
 author: "Bernhard Fuchs"
 layout: default
 permalink: /KI/Data-Science/
-last_modified_at: 2025-11-20
+last_modified_at: 2026-03-06
 ---
 
 
@@ -392,7 +392,7 @@ l = [x for x in range(10) if x%2==0]   # [0, 2, 4, 6, 8]
 
 l2 = [x for x in range(5)]
 l2 = ['odd' if x%2!=0 else 'even' for x in l2]   # ['even', 'odd', 'even', 'odd', 'even']
-````
+```
 
 
 

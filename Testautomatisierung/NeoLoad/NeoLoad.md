@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /Testautomatisierung/NeoLoad/
-last_modified_at: 2025-11-20
+last_modified_at: 2026-03-06
 ---
 
 # NeoLoad
@@ -10,6 +10,8 @@ last_modified_at: 2025-11-20
 [Cloud Console](#Cloud-Console)
 
 [Cloud-Lastgenerator](#Cloud-Lastgenerator)
+
+[Lasttest ausführen](#Lasttest-ausführen)
 
 [RealBrowser](#RealBrowser)
 
@@ -54,6 +56,7 @@ Zugang: [Customer Area](https://www.neotys.com/accountarea/customer-area.html) >
 
 
 
+
 ## Cloud-Lastgenerator {#Cloud-Lastgenerator}
 
 Der NeoLoad-Controller prüft, ob die Version etc. stimmt => Farbe des Lastgenerators als rot oder grün dargestellt.
@@ -63,6 +66,29 @@ Erst beim Start des Tests werden die **Testobjekte** zum Cloud-Lastgenerator hoc
 Wenn man die IP des Cloud-Lastgenerators sieht, ist dieser hochgefahren und zur Testdurchführung bereit.
 
 Der Cloud-Lastgenerator identifiziert den zugehörigen NeoLoad-Controller über einen **Fingerprint**, der vor dem Start des Lasttests in seine Konfiguration geschrieben wird.
+
+
+
+
+## Lasttest ausführen {#Lasttest-ausführen}
+
+- Vor dem Start eines Lasttests die Einstellungen nochmals zu prüfen lohnt sich!
+
+
+### Populations
+
+- Für jede Population sind die weiteren Einstellungen durchzuführen (Dauer, Lastagenten, Lastverteilung)
+
+
+### Load Generators
+
+- Wenn man nicht sicher ist, ob ein Lastagent trotz grünem Symbol tatsächlich verfügbar ist, besser kurz auf der jeweiligen Virtual Machine nachprüfen, wie es tatsächlich um dessen Status steht.
+
+
+### Load Variation Policy
+
+- Auch bei nicht sofortigem Ende des Lasttests, sondern kontinuierlichem Abbau, bleiben auf den Lastgeneratoren oftmals zahlreiche GUI-Fenster offen, so dass aufzuräumen ist.
+
 
 
 
