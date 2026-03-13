@@ -1,5 +1,20 @@
 - name: Home
   link: /
+
+- name: KI
+  link: /KI/
+  children:
+    - name: Data science
+      link: /KI/Data-Science/
+    - name: Machine learning
+      link: /KI/Machine-Learning/
+
+- name: Konsole
+  link: /Konsole/
+  children:
+    - name: zsh-Shell
+    - link: /Konsole/zsh-Shell/
+
 - name: Testautomatisierung
   link: /Testautomatisierung/
   children:
@@ -12,10 +27,3 @@
     - name: Rest Assured mit Kafka
       link: /Testautomatisierung/RestAssured_Kafka/
 
-- name: KI
-  link: /KI/
-  children:
-    - name: Data science
-      link: /KI/Data-Science/
-    - name: Machine learning
-      link: /KI/Machine-Learning/

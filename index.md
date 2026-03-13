@@ -1,5 +1,5 @@
 ---
-last_modified_at: 2025-11-20
+last_modified_at: 2026-03-13
 # Feel free to add content and custom Front Matter to this file.
 # To modify the layout, see https://jekyllrb.com/docs/themes/#overriding-theme-defaults
 
@@ -10,6 +10,8 @@ permalink: /
 # Notizen
 
 [KI](/KI/index)
+
+[Konsole](/Konsole/index)
 
 [Lernen] – in Arbeit
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /Testautomatisierung/NeoLoad/
-last_modified_at: 2026-03-06
+last_modified_at: 2026-03-13
 ---
 
 # NeoLoad
@@ -59,14 +59,20 @@ Zugang: [Customer Area](https://www.neotys.com/accountarea/customer-area.html) >
 
 ## Cloud-Lastgenerator {#Cloud-Lastgenerator}
 
+Dieser Cloud-Lastgenerator wird in der Runtime des NeoLoad-Controllers eingebunden über Klick auf + und die Auswahl der zuvor reservierten Cloud-Sitzung. Wenn man die IP des Cloud-Lastgenerators sieht, ist dieser hochgefahren und zur Testdurchführung bereit. Das Hochfahren einer reservierten Maschine dauert etwa fünf Minuten.
+
 Der NeoLoad-Controller prüft, ob die Version etc. stimmt => Farbe des Lastgenerators als rot oder grün dargestellt.
 
-Erst beim Start des Tests werden die **Testobjekte** zum Cloud-Lastgenerator hochgeladen.
+Erst beim Start des Tests werden die **Testobjekte** zum Cloud-Lastgenerator hochgeladen. Die Kommunikation erfolgt über HTTPS.
 
-Wenn man die IP des Cloud-Lastgenerators sieht, ist dieser hochgefahren und zur Testdurchführung bereit.
 
-Der Cloud-Lastgenerator identifiziert den zugehörigen NeoLoad-Controller über einen **Fingerprint**, der vor dem Start des Lasttests in seine Konfiguration geschrieben wird.
 
+### Authentifizierung des NeoLoad-Controllers
+
+Der NeoLoad-Controller verbindet sich mit der Cloud-Console über die reservierte IP-Adresse. Der Cloud-Lastgenerator identifiziert den zugehörigen NeoLoad-Controller über einen **Fingerprint**, der vor dem Start des Lasttests in seine Konfiguration geschrieben wird.
+
+
+Für den Zugriff auf die Lizenz über NeoLoad Web wird der API-Schlüssel benötigt (Verbindung des NeoLoad Controllers mit NeoLoad Web).
 
 
 
@@ -105,7 +111,7 @@ Die Ausführung eines Testskripts, das mit RealBrowser umgesetzt worden ist, üb
 
 ## URLs zur Freischaltung {#URLs-zur-Freischaltung}
 
-Diese vier URLs sind gegebenenfalls in der Firewall freizuschalten, um Testskript über einen Cloud-Lastgenerator auszuführen:
+Diese vier URLs sind gegebenenfalls in der Firewall freizuschalten, um ein Testskript über einen Cloud-Lastgenerator auszuführen:
 
 cloud.saas.neotys.com
 neoload-rest.saas.neotys.com
